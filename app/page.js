@@ -1,101 +1,67 @@
-import Image from "next/image";
+const Job = () => {
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const products = [
+    {
+      name: "Sugar",
+      image: "/images/sugar.jpg",
+      description: "edible, used in multiple foods source",
+      brand: "goden penny, dangote, honey well",
+      category: "beverages",
+      price: 90000,
+      stock: 50
+    },
+    {
+      name: "flour",
+      image: "/images/flour.jpg",
+      description: "edible, used in multiple foods source",
+      brand: "goden penny, dangote, honey well",
+      category: "beverages",
+      price: 60000,
+      stock: 50
+    },
+    {
+      name: "powdered Milk",
+      image: "/images/milk.jpg",
+      description: "edible, used in multiple foods source",
+      brand: "Dano Full cream, dano skill milk, peak milk, cowbel milk",
+      category: "beverages",
+      price: 200000,
+      stock: 0
+    },
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  
+  
+  ]
+return (
+  <div>
+          <div className="h-screen relative">
+              <div className="bg-black opacity-70 absolute z-40">
+
+              </div>
+
+              <img src="images/store.jpg" className="z-40  absolute w-full h-screen"/>
+
+              <h1 className="text-center font-bold text-5xl z-50 absolute top-96 ml-64 shadow-xl text-red-500"> Welcome to our online Store</h1>
+            </div>
+
+              <div className="text-center flex items-center justify-center mt-10">
+                <h1 className="text-3xl text-red-500">Our Products</h1>
+              </div>
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-5">
+                {products?.map((product, index) => (
+                  <div className="shadow-xl px-20 py-20" key={index}>
+                      <p className="text-2xl font-bold text-center uppercase">{product.name}</p>
+
+                      <img src={product.image}/>
+                      <p className="font.bold, text-green-600" > NGN {product.price} </p>
+                      <button disabled={product?.stock === 0} className="bg-red-500 py-5 px-2 text-white rounded-xl w-full hover:bg-black">{product.stock > 0? 'Add to Cart': 'Out of Stock'  } </button>
+                  </div>
+                ))}
+
+            </section>
+
     </div>
-  );
+)
 }
+
+export default Job
